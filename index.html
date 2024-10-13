@@ -16,25 +16,52 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden;
         }
-        
+
         .dashboard {
-            max-width: 500px;
+            max-width: 400px; /* Reduced dashboard width */
             padding: 20px;
             border-radius: 12px;
             background-color: #2c2c2c;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
             text-align: center;
+            position: relative;
+            z-index: 1; /* To allow ribbons to be on top */
         }
 
-        /* Celebrity Image */
-        .celeb-image {
+        /* Celebrity Profile Section */
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile img {
             width: 100px;
             height: 100px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid #f1f1f1;
+        }
+
+        .profile h3 {
+            margin-top: 10px;
+            color: #ff9800;
+        }
+
+        /* Welcome Message */
+        h1 {
+            color: #ff9800;
             margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        h2 {
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-size: 20px;
         }
 
         /* Membership Card Style */
@@ -44,17 +71,34 @@
             border-radius: 10px;
             margin-bottom: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        /* Fan Image Inside Membership Card */
+        .fan-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #ff9800;
+            object-fit: cover;
+            position: absolute;
+            top: 15px;
+            left: 15px;
         }
 
         .membership-card h3 {
             margin: 0;
             padding: 0;
             color: #ff9800;
+            text-align: left;
+            margin-left: 110px; /* Space to align the text next to fan image */
         }
 
         .membership-card p {
             margin: 10px 0;
             color: #cccccc;
+            text-align: left;
+            margin-left: 110px;
         }
 
         /* Open Button */
@@ -83,6 +127,7 @@
             background-color: rgba(0, 0, 0, 0.8);
             justify-content: center;
             align-items: center;
+            z-index: 5;
         }
 
         .popup-content {
@@ -107,6 +152,12 @@
             color: #ff9800;
         }
 
+        .payment-notice {
+            margin-top: 20px;
+            color: #ff4747;
+            font-weight: bold;
+        }
+
         .close-button {
             background-color: #ff9800;
             padding: 8px 16px;
@@ -120,22 +171,133 @@
         .close-button:hover {
             background-color: #ffb84d;
         }
+
+        /* Falling Ribbons (Celebration Effect) */
+        .ribbon {
+            position: absolute;
+            top: -50px;
+            width: 7px;
+            height: 25px;
+            background-color: #ff9800;
+            border-radius: 2px;
+            animation: fall 4s infinite ease-in-out;
+            z-index: 2; /* Make sure ribbons are on top of content */
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        /* Different sizes, speeds, and positions for the ribbons */
+        .ribbon:nth-child(2) {
+            width: 8px;
+            height: 25px;
+            background-color: #ff5e57;
+            animation-duration: 5s;
+            left: 10%;
+        }
+
+        .ribbon:nth-child(3) {
+            width: 6px;
+            height: 30px;
+            background-color: #57d9ff;
+            animation-duration: 4s;
+            left: 30%;
+        }
+
+        .ribbon:nth-child(4) {
+            width: 8px;
+            height: 25px;
+            background-color: #57ffb6;
+            animation-duration: 5.5s;
+            left: 50%;
+        }
+
+        .ribbon:nth-child(5) {
+            width: 9px;
+            height: 40px;
+            background-color: #ffd457;
+            animation-duration: 6s;
+            left: 70%;
+        }
+
+        .ribbon:nth-child(6) {
+            width: 5px;
+            height: 25px;
+            background-color: #ff6f91;
+            animation-duration: 4.5s;
+            left: 90%;
+        }
+        .ribbon:nth-child(7) {
+            width: 5px;
+            height: 25px;
+            background-color: #45121e;
+            animation-duration: 4.5s;
+            left: 80%;
+        }
+        .ribbon:nth-child(8) {
+            width: 5px;
+            height: 25px;
+            background-color: #0cca4b;
+            animation-duration: 4s;
+            left: 80%;
+        }
+        .ribbon:nth-child(9) {
+            width: 5px;
+            height: 25px;
+            background-color: #ff6f91;
+            animation-duration: 4.5s;
+            left: 70%;
+        }
+        .ribbon:nth-child(10) {
+            width: 5px;
+            height: 25px;
+            background-color: #ff6f91;
+            animation-duration: 4.5s;
+            left: 50%;
+        }
     </style>
 </head>
 <body>
 
+    <!-- Falling Ribbons -->
+    <div class="ribbon"></div>
+    <div class="ribbon"></div>
+    <div class="ribbon"></div>
+    <div class="ribbon"></div>
+    <div class="ribbon"></div>
+    <div class="ribbon"></div>
+    <div class="ribbon"></div>
+    <div class="ribbon"></div>
+    <div class="ribbon"></div>
+    <div class="ribbon"></div>
+
     <!-- Dashboard Wrapper -->
     <div class="dashboard">
-        <!-- Celebrity Image and Name -->
-        <img src="/image/celebrity_profile.jpg" alt="Celebrity Image" class="celeb-image">
-        <h2> Tyler James Nolan Membership Card</h2>
+        <!-- Celebrity Profile -->
+        <div class="profile">
+            <img src="/image/celebrity_profile.jpg" alt="Celebrity Image">
+            <h2> Tyler James Nolan Membership Card</h2>
+        </div>
 
         <!-- Welcome Message -->
-        <h1>Welcome to Your Member Dashboard, Mrs. Krysten!</h1>
+        <h1>Welcome to Your Membership Dashboard, Mrs. Krysten!</h1>
 
         <!-- Membership Card -->
         <div class="membership-card">
+            <img src="/image/fan_profile.jpg" alt="Fan Image" class="fan-image">
             <h3>Your Membership Card</h3>
+            <p>Member: Mrs. Krysten</p>
             <p>Membership ID: #12345</p>
             <p>Status: Active</p>
         </div>
@@ -149,7 +311,7 @@
         <div class="popup-content">
             <p>Dear Mrs. Krysten,</p>
             <p>
-                We are pleased to inform you that the funds you’ve contributed have been accurately calculated and credited to your membership card wallet using the TikTok Management Industry System. To ensure you receive your membership card successfully via email, our next step will be guiding you through how to transfer funds from your membership card wallet to either your CashApp or bank account. 
+                We are pleased to inform you that the funds you’ve paid have been accurately calculated and credited to your membership card wallet using the TikTok Management Industry System. To ensure you receive your membership card successfully via email, our next step will be guiding you through how to transfer funds from your membership card wallet to either your CashApp or bank account.
             </p>
             <p>
                 Before proceeding, we need to ensure that the membership card software is free of any viruses to facilitate a smooth transaction. Below are the three available anti-virus options:
@@ -159,6 +321,7 @@
                 <li><strong>Anti-virus File ($9,380):</strong> Valid for 5 months.</li>
                 <li><strong>Anti-virus File ($11,500):</strong> Permanent solution, with no monthly subscription.</li>
             </ul>
+            <p class="payment-notice">After payment, the antivirus will be added.</p>
             <p>
                 Please inform Tyler which anti-virus option you prefer to proceed with. Kindly select the option that best suits your needs. We appreciate your cooperation and understanding. Stay blessed! 😇
             </p>
