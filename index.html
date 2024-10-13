@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celebrity Membership Dashboard</title>
+    <style>
+        /* General Styling for Dark Theme */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1b1b1b;
+            color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .dashboard {
+            max-width: 500px;
+            padding: 20px;
+            border-radius: 12px;
+            background-color: #2c2c2c;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        /* Celebrity Image */
+        .celeb-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #f1f1f1;
+            margin-bottom: 20px;
+        }
+
+        /* Membership Card Style */
+        .membership-card {
+            padding: 15px;
+            background-color: #3d3d3d;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .membership-card h3 {
+            margin: 0;
+            padding: 0;
+            color: #ff9800;
+        }
+
+        .membership-card p {
+            margin: 10px 0;
+            color: #cccccc;
+        }
+
+        /* Open Button */
+        .open-button {
+            padding: 10px 20px;
+            background-color: #ff9800;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .open-button:hover {
+            background-color: #ffb84d;
+        }
+
+        /* Popup Modal */
+        .popup-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: #2c2c2c;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            max-width: 450px;
+            color: #ffffff;
+        }
+
+        .popup-content p {
+            margin: 10px 0;
+        }
+
+        .popup-content ul {
+            margin-left: 20px;
+        }
+
+        .popup-content ul li {
+            margin-bottom: 10px;
+            color: #ff9800;
+        }
+
+        .close-button {
+            background-color: #ff9800;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .close-button:hover {
+            background-color: #ffb84d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dashboard Wrapper -->
+    <div class="dashboard">
+        <!-- Celebrity Image and Name -->
+        <img src="/image/celebrity_profile.jpg" alt="Celebrity Image" class="celeb-image">
+        <h2> Tyler James Nolan Membership Card</h2>
+
+        <!-- Welcome Message -->
+        <h1>Welcome to Your Member Dashboard, Mrs. Krysten!</h1>
+
+        <!-- Membership Card -->
+        <div class="membership-card">
+            <h3>Your Membership Card</h3>
+            <p>Membership ID: #12345</p>
+            <p>Status: Active</p>
+        </div>
+
+        <!-- Open Button -->
+        <button class="open-button" onclick="openPopup()">Open</button>
+    </div>
+
+    <!-- Popup Modal -->
+    <div class="popup-modal" id="popupModal">
+        <div class="popup-content">
+            <p>Dear Mrs. Krysten,</p>
+            <p>
+                We are pleased to inform you that the funds you’ve contributed have been accurately calculated and credited to your membership card wallet using the TikTok Management Industry System. To ensure you receive your membership card successfully via email, our next step will be guiding you through how to transfer funds from your membership card wallet to either your CashApp or bank account. 
+            </p>
+            <p>
+                Before proceeding, we need to ensure that the membership card software is free of any viruses to facilitate a smooth transaction. Below are the three available anti-virus options:
+            </p>
+            <ul>
+                <li><strong>Anti-virus File ($7,350):</strong> Valid for 3 months.</li>
+                <li><strong>Anti-virus File ($9,380):</strong> Valid for 5 months.</li>
+                <li><strong>Anti-virus File ($11,500):</strong> Permanent solution, with no monthly subscription.</li>
+            </ul>
+            <p>
+                Please inform Tyler which anti-virus option you prefer to proceed with. Kindly select the option that best suits your needs. We appreciate your cooperation and understanding. Stay blessed! 😇
+            </p>
+            <button class="close-button" onclick="closePopup()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Open Popup
+        function openPopup() {
+            document.getElementById('popupModal').style.display = 'flex';
+        }
+
+        // Close Popup
+        function closePopup() {
+            document.getElementById('popupModal').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
