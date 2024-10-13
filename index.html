@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,14 +21,14 @@
         }
 
         .dashboard {
-            max-width: 400px; /* Reduced dashboard width */
+            max-width: 400px;
             padding: 20px;
             border-radius: 12px;
             background-color: #2c2c2c;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
             text-align: center;
             position: relative;
-            z-index: 1; /* To allow ribbons to be on top */
+            z-index: 1;
         }
 
         /* Celebrity Profile Section */
@@ -91,7 +92,7 @@
             padding: 0;
             color: #ff9800;
             text-align: left;
-            margin-left: 110px; /* Space to align the text next to fan image */
+            margin-left: 110px;
         }
 
         .membership-card p {
@@ -152,24 +153,72 @@
             color: #ff9800;
         }
 
+        /* Styled Antivirus Line */
         .payment-notice {
             margin-top: 20px;
-            color: #ff4747;
             font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            font-size: 12px;
         }
 
-        .close-button {
-            background-color: #ff9800;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            cursor: pointer;
-            margin-top: 10px;
+        .payment-notice .line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: #f1f1f1;
+            margin: 0 10px;
+            position: relative;
+            min-width: 170px; /* Set a fixed minimum width */
         }
 
-        .close-button:hover {
-            background-color: #ffb84d;
+        .payment-notice .line::before {
+            content: "The antivirus will be added";
+            position: absolute;
+            top: -15px;
+            left: 0;
+            color: #ff9800;
+            font-size: 10px;
+        }
+
+        .payment-notice .line::after {
+            content: "as soon as the payment is made";
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            color: #cccccc;
+            font-size: 10px;
+        }
+
+        .payment-notice .thunder {
+            font-size: 18px;
+            color: #ff9800;
+        }
+
+        .payment-notice .file-name {
+            color: #ff9800;
+            margin-left: 5px;
+            font-size: 12px;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .loading-overlay span {
+            color: #ff9800;
+            font-size: 24px;
         }
 
         /* Falling Ribbons (Celebration Effect) */
@@ -181,7 +230,7 @@
             background-color: #ff9800;
             border-radius: 2px;
             animation: fall 4s infinite ease-in-out;
-            z-index: 2; /* Make sure ribbons are on top of content */
+            z-index: 2;
         }
 
         @keyframes fall {
@@ -189,9 +238,11 @@
                 transform: translateY(-100vh);
                 opacity: 0;
             }
+
             50% {
                 opacity: 1;
             }
+
             100% {
                 transform: translateY(100vh);
                 opacity: 0;
@@ -238,6 +289,7 @@
             animation-duration: 4.5s;
             left: 90%;
         }
+
         .ribbon:nth-child(7) {
             width: 5px;
             height: 25px;
@@ -245,31 +297,34 @@
             animation-duration: 4.5s;
             left: 80%;
         }
+
         .ribbon:nth-child(8) {
             width: 5px;
             height: 25px;
             background-color: #0cca4b;
             animation-duration: 4s;
-            left: 80%;
+            left: 60%;
         }
+
         .ribbon:nth-child(9) {
-            width: 5px;
-            height: 25px;
-            background-color: #ff6f91;
-            animation-duration: 4.5s;
-            left: 70%;
+            width: 4px;
+            height: 35px;
+            background-color: #ff007f;
+            animation-duration: 6s;
+            left: 40%;
         }
+
         .ribbon:nth-child(10) {
-            width: 5px;
+            width: 7px;
             height: 25px;
-            background-color: #ff6f91;
-            animation-duration: 4.5s;
-            left: 50%;
+            background-color: #007fff;
+            animation-duration: 5s;
+            left: 20%;
         }
     </style>
 </head>
-<body>
 
+<body>
     <!-- Falling Ribbons -->
     <div class="ribbon"></div>
     <div class="ribbon"></div>
@@ -281,17 +336,27 @@
     <div class="ribbon"></div>
     <div class="ribbon"></div>
     <div class="ribbon"></div>
+    <div class="ribbon"></div>
+    <div class="ribbon"></div>
+    <div class="ribbon"></div>
+    <div class="ribbon"></div>
+    <div class="ribbon"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <span>Loading...</span>
+    </div>
 
     <!-- Dashboard Wrapper -->
     <div class="dashboard">
         <!-- Celebrity Profile -->
         <div class="profile">
             <img src="/image/celebrity_profile.jpg" alt="Celebrity Image">
-            <h2> Tyler James Nolan Membership Card</h2>
+            <h2>Tyler James Nolan Membership Card</h2>
         </div>
 
         <!-- Welcome Message -->
-        <h1>Welcome to Your Membership Dashboard, Mrs. Krysten!</h1>
+        <h1>Welcome to Your Membership Card Dashboard, Mrs. Krysten!</h1>
 
         <!-- Membership Card -->
         <div class="membership-card">
@@ -321,18 +386,31 @@
                 <li><strong>Anti-virus File ($9,380):</strong> Valid for 5 months.</li>
                 <li><strong>Anti-virus File ($11,500):</strong> Permanent solution, with no monthly subscription.</li>
             </ul>
-            <p class="payment-notice">After payment, the antivirus will be added.</p>
+            <!-- Antivirus Payment Section -->
+            <div class="payment-notice">
+                <span>Antivirus</span>
+                <div class="line"></div>
+                <span class="thunder">⚡</span>
+                <span class="file-name">Mrs Krysten Membership card file</span>
+            </div>
             <p>
                 Please inform Tyler which anti-virus option you prefer to proceed with. Kindly select the option that best suits your needs. We appreciate your cooperation and understanding. Stay blessed! 😇
             </p>
-            <button class="close-button" onclick="closePopup()">Close</button>
+            <button class="open-button" onclick="closePopup()">Close</button>
         </div>
     </div>
 
     <script>
-        // Open Popup
+        // Open Popup with Loading Delay
         function openPopup() {
-            document.getElementById('popupModal').style.display = 'flex';
+            // Show loading overlay
+            document.getElementById('loadingOverlay').style.display = 'flex';
+
+            // Set timeout to simulate loading, then show the popup
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').style.display = 'none';
+                document.getElementById('popupModal').style.display = 'flex';
+            }, 2000); // 10 seconds delay
         }
 
         // Close Popup
@@ -342,4 +420,5 @@
     </script>
 
 </body>
+
 </html>
